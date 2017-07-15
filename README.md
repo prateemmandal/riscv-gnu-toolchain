@@ -108,3 +108,32 @@ To test GCC, run the following commands:
     make linux
     # Need qemu-riscv32 or qemu-riscv64 in your `PATH`.
     make check-gcc-linux
+
+Prateem's Notes
+---------------
+- riscv-binutins-gdb failed because guile portion of it won't build with latest latest guile-2.2 that is on my arch linux host system. Workaround right now is to disable guile while building gdb with directive '--with-guile=no'
+  - ./configure --prefix=/home/prateem/riscv/riscv-gnu-toolchain-install --enable-multilib --with-guile=no
+  - Commands
+    [prateem@turing riscv-gnu-toolchain]$ pwd
+    /home/prateem/riscv/riscv-gnu-toolchain
+    [prateem@turing riscv-gnu-toolchain]$ ./configure --prefix=/home/prateem/riscv/riscv-gnu-toolchain --enable-multilib --with-guile=no
+  - Messages at end of building cross compilation tool chain
+
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /home/prateem/riscv/riscv-gnu-toolchain/riscv64-unknown-linux-gnu/lib/../lib64/lp64d
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
